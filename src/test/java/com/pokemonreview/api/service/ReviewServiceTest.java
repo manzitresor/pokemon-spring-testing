@@ -59,4 +59,15 @@ public class ReviewServiceTest {
         verify(pokemonRepository,times(1)).findById(pokemon.getId());
         verify(reviewRepository,times(1)).save(Mockito.any(Review.class));
     }
+
+    @Test
+    @DisplayName("Should get review by id")
+    void Review_GetReviewById_ReturnReviewDto() {
+        review.setPokemon(pokemon);
+        when(pokemonRepository.findById(pokemon.getId())).thenReturn(Optional.of(pokemon));
+        when(reviewRepository.findById(review.getId())).thenReturn(Optional.of(review));
+
+        ReviewDto result = reviewService.getReviewById(review.getId(),pokemon.getId());
+        Assertions.assertNotNull(result);
+    }
 }
