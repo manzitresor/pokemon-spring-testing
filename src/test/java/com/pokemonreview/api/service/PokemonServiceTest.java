@@ -54,7 +54,7 @@ public class PokemonServiceTest {
         Assertions.assertEquals(pokemonDto.getType(), result.getType());
         Assertions.assertNotNull(result);
 
-        verify(pokemonRepository,times(1)).save(Mockito.any(Pokemon.class));
+        verify(pokemonRepository, times(1)).save(Mockito.any(Pokemon.class));
     }
 
     @Test
@@ -64,9 +64,9 @@ public class PokemonServiceTest {
 
         when(pokemonRepository.findAll(Mockito.any(Pageable.class))).thenReturn(pokemonPage);
 
-        PokemonResponse savedPokemon = pokemonService.getAllPokemon(1,10);
+        PokemonResponse savedPokemon = pokemonService.getAllPokemon(1, 10);
         Assertions.assertNotNull(savedPokemon);
-        verify(pokemonRepository,times(1)).findAll(Mockito.any(Pageable.class));
+        verify(pokemonRepository, times(1)).findAll(Mockito.any(Pageable.class));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class PokemonServiceTest {
         PokemonDto poke = pokemonService.getPokemonById(1);
 
         Assertions.assertNotNull(poke);
-        verify(pokemonRepository,times(1)).findById(1);
+        verify(pokemonRepository, times(1)).findById(1);
     }
 
     @Test
@@ -89,14 +89,14 @@ public class PokemonServiceTest {
 
         PokemonDto updatedPoke = pokemonService.updatePokemon(pokemonDto, 1);
         Assertions.assertNotNull(updatedPoke);
-        verify(pokemonRepository,times(1)).findById(1);
-        verify(pokemonRepository,times(1)).save(Mockito.any(Pokemon.class));
+        verify(pokemonRepository, times(1)).findById(1);
+        verify(pokemonRepository, times(1)).save(Mockito.any(Pokemon.class));
     }
 
     @Test
     @DisplayName("Should Delete Pokemon")
     void PokemonService_DeletePokemon_ReturnResponseDto() {
         when(pokemonRepository.findById(1)).thenReturn(Optional.of(pokemon));
-        Assertions.assertAll(()-> pokemonService.deletePokemonId(1));
+        Assertions.assertAll(() -> pokemonService.deletePokemonId(1));
     }
 }

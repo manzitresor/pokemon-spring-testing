@@ -52,8 +52,8 @@ public class PokemonRepositoryTest {
         Assertions.assertEquals(pokemons.size(), 2);
     }
 
-@Test
-public void PokemonRepository_FindOne_ReturnPokemon() {
+    @Test
+    public void PokemonRepository_FindOne_ReturnPokemon() {
         Pokemon pokemon = new Pokemon()
                 .builder()
                 .name("picka")
